@@ -1,17 +1,7 @@
-import { useQuery } from '@tanstack/react-query'
-import type { IUser } from './types'
-import { sleep } from './sleep'
+import { useUsers } from './hooks/useUsers'
 
 export function Users() {
-  const { data, isLoading, refetch, isFetching, error } = useQuery({
-    queryKey: ['users'],
-    queryFn: async (): Promise<IUser[]> => {
-      // throw new Error('Error')
-      await sleep()
-      const response = await fetch('http://localhost:3000/users')
-      return response.json()
-    },
-  })
+  const { users, isLoading, refetch, isFetching, error } = useUsers()
   return (
     <div>
       <button
@@ -26,7 +16,7 @@ export function Users() {
       {!isLoading && isFetching && <h1>'Fetching...'</h1>}
       {error && <h1 className="text-red-400">{error.toString()}</h1>}
 
-      {data?.map((user) => (
+      {users.map((user) => (
         <div key={user.id}>
           <strong className="block">{user.name}</strong>
           <small>{user.email}</small>
