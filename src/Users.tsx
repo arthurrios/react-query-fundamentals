@@ -3,10 +3,15 @@ import type { IUser } from './types'
 import { sleep } from './sleep'
 
 export function Users() {
-  const { data, isLoading, refetch, isFetching } = useQuery({
-    enabled: false,
+  const { data, isLoading, refetch, isFetching, error } = useQuery({
     queryKey: ['users'],
+    staleTime: 5000,
+    gcTime: 5000,
+    refetchOnWindowFocus: false,
+    retry: false,
+    retryDelay: 1000,
     queryFn: async (): Promise<IUser[]> => {
+      // throw new Error('Error')
       await sleep()
       const response = await fetch('http://localhost:3000/users')
       return response.json()
@@ -24,6 +29,8 @@ export function Users() {
 
       {isLoading && <h1>'Loading...'</h1>}
       {!isLoading && isFetching && <h1>'Fetching...'</h1>}
+      {error && <h1 className="text-red-400">{error.toString()}</h1>}
+
       {data?.map((user) => (
         <div key={user.id}>
           <strong className="block">{user.name}</strong>
