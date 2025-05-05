@@ -5,11 +5,6 @@ import { sleep } from './sleep'
 export function Users() {
   const { data, isLoading, refetch, isFetching, error } = useQuery({
     queryKey: ['users'],
-    staleTime: 5000,
-    gcTime: 5000,
-    refetchOnWindowFocus: false,
-    retry: false,
-    retryDelay: 1000,
     queryFn: async (): Promise<IUser[]> => {
       // throw new Error('Error')
       await sleep()

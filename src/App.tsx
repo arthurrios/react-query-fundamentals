@@ -4,7 +4,16 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import { BrowserRouter, Link, Route, Routes } from 'react-router-dom'
 import { Posts } from './Posts'
 
-const queryClient = new QueryClient()
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 5000,
+      refetchOnWindowFocus: false,
+      retry: false,
+      gcTime: 10 * 60 * 1000, // 10 minutes
+    },
+  },
+})
 
 export function App() {
   return (
