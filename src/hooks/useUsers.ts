@@ -14,7 +14,7 @@ export function useUsers() {
   })
 
   return {
-    users: data,
+    users: data ?? [],
     isLoading,
     refetch,
     isFetching,

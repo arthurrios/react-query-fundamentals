@@ -1,6 +1,19 @@
 {
   "users": [
-    { "id": 1, "name": "Alice", "email": "alice@email.com" },
-    { "id": 2, "name": "Josh", "email": "josh@email.com" }
+    {
+      "id": "1",
+      "name": "Alice",
+      "email": "alice@email.com"
+    },
+    {
+      "id": "2",
+      "name": "Josh",
+      "email": "josh@email.com"
+    },
+    {
+      "id": "0932",
+      "name": "Arthur Rios",
+      "email": "arthur.rios007@gmail.com"
+    }
   ]
 }
